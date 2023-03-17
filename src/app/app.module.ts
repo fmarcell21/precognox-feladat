@@ -14,21 +14,23 @@ import {GameModule} from "./game/game.module";
 import {HeaderComponent} from "./header/header.component";
 import { SavesComponent } from './game/saves/saves.component';
 import {GameEffects} from "./game/State/game.effects";
+import {FormsModule} from "@angular/forms";
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SavesComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    GameModule,
-    StoreModule.forRoot(),
-    EffectsModule.forRoot([GameEffects]),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        GameModule,
+        StoreModule.forRoot(),
+        EffectsModule.forRoot([GameEffects]),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

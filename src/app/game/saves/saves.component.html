@@ -1,4 +1,14 @@
 <div class="flex flex-col m-auto">
+
+  <form class="mt-20 w-full max-w-sm m-auto" (ngSubmit)="searchGames(form)"  #form ="ngForm">
+    <div class="flex items-center border-b border-blue-400 py-2">
+      <input class="appearance-none bg-transparent border-none w-full text-zinc-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" id="gameName" ngModel name="gameName" required>
+      <button class="disabled:bg-red-400 disabled:hover:bg-red-500 disabled:hover:border-red-500 disabled:border-red-400 flex-shrink-0 bg-blue-400 hover:bg-blue-700 border-blue-400 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+        Search
+      </button>
+    </div>
+  </form>
+
   <app-saves-list
     [games]="games$ | async"
     [errorMessage]="errorMessage$ | async"

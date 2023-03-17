@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Store} from "@ngrx/store";
 
 import * as fromGame from "../State/game.reducer";
@@ -15,8 +15,10 @@ export class GameBoardComponent implements OnInit{
   @Input()newGame: boolean;
   @Input()currentPlayer: boolean;
   currentBoard: number[] = [0,0,0,0,0,0,0,0,0];
-  winner: boolean = false;
+  winner: string;
+  steps: number = 0;
   @Input()currentGame: Game;
+  @Output()gameWon = new EventEmitter<string>;
   constructor(private store: Store<fromGame.State>) {
   }
   ngOnInit() {
@@ -39,24 +41,40 @@ export class GameBoardComponent implements OnInit{
 
   onCellClick(cell: string):void {
     this.changeCelValue(cell);
-    this.store.dispatch(gameActions.updateCurrentGameBoard({payload: this.currentBoard.toString()}))
+
+    if(this.winner){
+      // window.alert(this.currentPlayer? 'X' : 'O' + 'Won the Game')
+      // console.log(this.winner + ' Won')
+      this.gameWon.emit(this.winner);
+    }
   }
 
   changeCelValue(cell: string){
-
+  if(this.winner === null){
+    this.steps = this.steps + 1;
+    console.log(this.steps)
     if (!document.getElementById(cell).innerHTML){
       if(this.currentPlayer){
-       document.getElementById(cell).innerHTML = 'X';
-       this.currentBoard[(+cell)] = 1
+        document.getElementById(cell).innerHTML = 'X';
+        this.currentBoard[(+cell)] = 1
 
       } else {
         document.getElementById(cell).innerHTML = 'O';
         this.currentBoard[(+cell)] = 2
       }
-      this.store.dispatch(gameActions.toggleCurrentPlayer());
+
+      this.store.dispatch(gameActions.updateCurrentGameBoard({payload: this.currentBoard.toString()}))
     }
     // console.log(this.currentBoard)
-    this.calculateWinner();
+    this.winner =this.calculateWinner();
+    this.store.dispatch(gameActions.toggleCurrentPlayer());
+    if(this.steps >=9){
+      this.winner = "draw";
+      this.gameWon.emit(this.winner)
+    }
+  }
+
+
 
   }
 
@@ -75,12 +93,17 @@ export class GameBoardComponent implements OnInit{
 
     for (let i = 0; i < lines.length; i++){
       const [a,b,c] = lines[i];
+      // if(
+      //   (this.currentBoard[a]>0) && (this.currentBoard[a] === this.currentBoard[b]) && (this.currentPlayer[a] === this.currentBoard[c])
+      // ) {
+      //   console.log('winner')
+      //   // return this.currentBoard[a]
+      // }
 
-      if(
-        (this.currentBoard[a]) && (this.currentBoard[a] === this.currentBoard[b]) && (this.currentPlayer[a] === this.currentBoard[c])
-      ) {
-        console.log('winner')
-        return this.currentBoard[a]
+      if(this.currentBoard[a]===this.currentBoard[c] && this.currentBoard[a]===this.currentBoard[b] && this.currentBoard[a]>0){
+        console.log('Winner')
+        const whoWon = this.currentPlayer? 'X' : 'O'
+        return whoWon;
       }
     }
 

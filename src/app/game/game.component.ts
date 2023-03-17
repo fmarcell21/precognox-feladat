@@ -20,6 +20,9 @@ export class GameComponent implements OnInit{
   newGame: boolean = false;
   currentPlayer: boolean;
   currentGame : Game;
+  won: boolean = false;
+  winner: string;
+  draw: boolean;
   constructor(private store: Store<GameReducer.State>) {
   }
 
@@ -52,5 +55,19 @@ export class GameComponent implements OnInit{
     this.store.dispatch(GameActions.saveGame({payload: this.currentGame}));
     // console.log(this.currentGame)
     this.gameStarted = !this.gameStarted;
+  }
+  resetGame(){
+
+  }
+  endGame(winner: string){
+    // console.log(winner)
+    if(winner !== 'draw'){
+      this.won = true;
+      this.winner = winner;
+    } else {
+      this.draw = true;
+    }
+
+    // window.alert(winner + ' won the game!');
   }
 }

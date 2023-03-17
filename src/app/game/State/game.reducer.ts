@@ -98,6 +98,7 @@ export const GameReducer = createReducer<GameState>(
     }
   }),
   on(GameActions.updateCurrentGameBoard, (state, action):GameState => {
+    // console.log('The new board is: '+ action.payload)
     return {
       ...state,
       currentGame: {...state.currentGame, board: action.payload}

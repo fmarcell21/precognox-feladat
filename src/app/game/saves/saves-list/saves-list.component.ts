@@ -1,10 +1,11 @@
-import {Component, Input} from "@angular/core";
+import {Component, Input, ViewChild} from "@angular/core";
 import {Game} from "../../game.model";
 import {Store} from "@ngrx/store";
 
 import * as fromGame from "../../State/game.reducer";
 import * as gameActions from "../../State/game.actions";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-saves-list',
@@ -48,4 +49,5 @@ export class SavesListComponent{
     this.store.dispatch(gameActions.deleteGame({payload: this.selectedItem.id}))
     this.toggleModal()
   }
+
 }
