@@ -117,9 +117,15 @@ export const GameReducer = createReducer<GameState>(
       games: updatedGames,
       error: ''
     }
-  })
-
-
+  }),
+  on(GameActions.resetCurrentGame, (state): GameState =>{
+    return {
+      ...state,
+      currentGame: null,
+      currentPlayer: false,
+      newGame: true,
+    }
+  }),
 
 
 )

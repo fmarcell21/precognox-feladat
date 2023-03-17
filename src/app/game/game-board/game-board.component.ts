@@ -5,6 +5,7 @@ import * as fromGame from "../State/game.reducer";
 import * as gameActions from "../State/game.actions";
 import {take} from "rxjs";
 import {Game} from "../game.model";
+import * as GameActions from "../State/game.actions";
 
 @Component({
   selector: 'app-game-board',
@@ -68,7 +69,7 @@ export class GameBoardComponent implements OnInit{
     // console.log(this.currentBoard)
     this.winner =this.calculateWinner();
     this.store.dispatch(gameActions.toggleCurrentPlayer());
-    if(this.steps >=9){
+    if(this.steps >=9 && !this.winner){
       this.winner = "draw";
       this.gameWon.emit(this.winner)
     }

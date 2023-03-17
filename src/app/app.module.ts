@@ -26,10 +26,10 @@ import {FormsModule} from "@angular/forms";
         HttpClientModule,
         AppRoutingModule,
         GameModule,
+        FormsModule,
         StoreModule.forRoot(),
         EffectsModule.forRoot([GameEffects]),
         StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()}),
-        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

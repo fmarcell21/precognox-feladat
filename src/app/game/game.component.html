@@ -14,9 +14,7 @@
     <h1 class="mb-8 text-3xl font-bold uppercase mt-5" *ngIf="gameStarted">Tic Tac Toe</h1>
     <h3 class="mb-4 text-xl" *ngIf="gameStarted && !won">Player {{currentPlayer? 'X' : 'O'}}'s turn</h3>
     <app-game-board (gameWon)="endGame($event)" [currentGame]="currentGame" [currentPlayer]="currentPlayer" [newGame]="newGame" *ngIf="gameStarted"></app-game-board>
-    <div class="flex items-center bg-teal-300 hover:bg-teal-400 cursor-pointer rounded text-white text-sm font-bold px-4 py-3 mt-5" role="alert" *ngIf="gameStarted">
-      <button (click)="resetGame()">Reset</button>
-    </div>
+
     <form class="mt-20 w-full max-w-sm" (ngSubmit)="saveGame()" #f ="ngForm" *ngIf="gameStarted">
       <div class="flex items-center border-b border-blue-400 py-2">
         <input class="appearance-none bg-transparent border-none w-full text-zinc-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="{{newGame? 'Game Name' : gameName}}"  id="gameName" ngModel name="gameName" required>

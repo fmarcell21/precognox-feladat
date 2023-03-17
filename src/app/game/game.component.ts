@@ -56,9 +56,7 @@ export class GameComponent implements OnInit{
     // console.log(this.currentGame)
     this.gameStarted = !this.gameStarted;
   }
-  resetGame(){
 
-  }
   endGame(winner: string){
     // console.log(winner)
     if(winner !== 'draw'){

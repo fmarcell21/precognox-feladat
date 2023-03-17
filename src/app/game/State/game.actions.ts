@@ -5,6 +5,9 @@ export const startNewGame = createAction(
   '[Game] New Game',
   props<{payload: string}>()
 );
+export const resetCurrentGame = createAction(
+  '[Game] Reset Current Game'
+)
 /*Saving the current game*/
 export const saveGame = createAction(
   '[Game] Save Game',
@@ -61,3 +64,4 @@ export const deleteGameFail = createAction(
   '[Save] Delete Game failure',
   props<{payload: string}>()
 )
+
