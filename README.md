@@ -13,8 +13,7 @@ Filtering: Done
 
 Testing: Not done
 
-    didn't have time to implement filtering
-    error handling is lacking
+    didn't have time to implement testing or proper error handling
 Design: Done
 
     very basic design implemented
