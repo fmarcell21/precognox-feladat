@@ -9,15 +9,20 @@ import {HttpClientModule} from "@angular/common/http";
 
 import * as fromApp from "./State/app.reducer"
 import {AppRoutingModule} from "./app-routing";
+
+import {GameModule} from "./game/game.module";
+import {HeaderComponent} from "./header/header.component";
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot(fromApp.appReducer),
+    GameModule,
+    StoreModule.forRoot(),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
