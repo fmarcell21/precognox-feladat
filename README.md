@@ -1,5 +1,6 @@
 Tasks:
-	##Project skeleton: Done
+
+Project skeleton: Done
 
 Game logic: Done
 
