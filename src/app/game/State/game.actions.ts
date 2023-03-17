@@ -35,4 +35,29 @@ export const loadGame = createAction(
   '[Saves] Load Game',
   props<{payload: Game}>()
 )
-
+/*Toggle The current Player*/
+export const toggleCurrentPlayer = createAction(
+  '[Game] Toggle Current Player'
+)
+/*Update the current game*/
+export const updateCurrentGameBoard = createAction(
+  '[Game] Update current game board',
+  props<{payload: string}>()
+)
+export const updateCurrentGameName = createAction(
+  '[Game] Update current game name',
+  props<{payload: string}>()
+)
+/*Delete*/
+export const deleteGame = createAction(
+  '[Save] deleteGame',
+  props<{payload: number}>()
+)
+export const deleteGameSuccess = createAction(
+  '[Save] Delete Game success',
+  props<{payload: number}>()
+)
+export const deleteGameFail = createAction(
+  '[Save] Delete Game failure',
+  props<{payload: string}>()
+)

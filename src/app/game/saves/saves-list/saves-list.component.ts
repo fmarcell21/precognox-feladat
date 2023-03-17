@@ -17,7 +17,8 @@ export class SavesListComponent{
   constructor(private store: Store<fromGame.State>, private router: Router) {
   }
   modalOpen = false;
-  selectedItem: number;
+  selectedItem: Game;
+
 
   toggleModal(){
     if(this.modalOpen){
@@ -27,18 +28,24 @@ export class SavesListComponent{
 
   }
   gameSelected(i: number){
-    console.log(i);
+    // console.log(i);
     this.toggleModal();
-    this.selectedItem = i;
+
+    // this.selectedItem = i;
+    this.selectedItem = this.games.find((obj)=>{return obj.id === i});
+
   }
   loadGame(){
     // console.log('loadGame: '+ this.games[this.selectedItem].name);
-    this.store.dispatch(gameActions.loadGame({payload: this.games[this.selectedItem]}));
+    // this.store.dispatch(gameActions.loadGame({payload: this.games[this.selectedItem]}));
+    this.store.dispatch(gameActions.loadGame({payload: this.selectedItem}));
     this.router.navigate(['game/'])
     this.toggleModal();
   }
   deleteGame(){
-    console.log('deleteGame: '+ this.games[this.selectedItem].name)
+    // console.log('deleteGame: '+ this.games[this.selectedItem].name)
+    console.log(this.selectedItem)
+    this.store.dispatch(gameActions.deleteGame({payload: this.selectedItem.id}))
     this.toggleModal()
   }
 }

@@ -6,7 +6,7 @@
 <!--</tbody>-->
 <div class=" bg-zinc-200 flex flex-col gap-4 h-screen items-center">
 
-  <a class="mt-2 rounded-sm w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-1 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform " (click)="gameSelected(i)" *ngFor="let game of games; let i = index">
+  <a class="mt-2 rounded-sm w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-1 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform " (click)="gameSelected(game.id)" *ngFor="let game of games; let i = index">
     <div class="col-span-12 md:col-span-1">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="#2563eb">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
@@ -26,7 +26,7 @@
       <!--header-->
       <div class="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
         <h3 class="text-3xl font-semibold">
-          {{games[selectedItem].name}}
+          {{selectedItem.name}}
         </h3>
         <button class="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" (click)="toggleModal()">
           <span class="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">

@@ -9,15 +9,15 @@ export interface GameState {
   games: Game[];
   error: string;
   newGame: boolean;
-  // board: string;
-  // id: number;
-  // name: string;
+  currentPlayer: boolean;
+
 }
 const initialState: GameState = {
   currentGame: null,
   games: [],
   error: '',
-  newGame: true
+  newGame: true,
+  currentPlayer: false,
 }
 
 const getGameFeatureState = createFeatureSelector<GameState>('game');
@@ -40,6 +40,14 @@ export const getGames = createSelector(
 export const getNewGame= createSelector(
   getGameFeatureState,
   state => state.newGame
+);
+export const getCurrentPlayer = createSelector(
+  getGameFeatureState,
+  state => state.currentPlayer
+);
+export const getCurrentGame = createSelector(
+  getGameFeatureState,
+  state => state.currentGame
 )
 export const GameReducer = createReducer<GameState>(
   initialState,
@@ -50,9 +58,9 @@ export const GameReducer = createReducer<GameState>(
       currentGame: {
         board: '000000000',
         name: action.payload,
-        id: -1,
+        id: null
       },
-      newGame: true
+      newGame: true,
     }
   }),
   on(GameActions.saveGameSuccess, (state, action): GameState => {
@@ -83,6 +91,33 @@ export const GameReducer = createReducer<GameState>(
       newGame: false
     }
   }),
+  on(GameActions.toggleCurrentPlayer, (state, action):GameState => {
+    return {
+      ...state,
+      currentPlayer: !state.currentPlayer
+    }
+  }),
+  on(GameActions.updateCurrentGameBoard, (state, action):GameState => {
+    return {
+      ...state,
+      currentGame: {...state.currentGame, board: action.payload}
+      }
+    }),
+  on(GameActions.updateCurrentGameName, (state, action):GameState => {
+    return {
+      ...state,
+      currentGame: {...state.currentGame, name: action.payload}
+    }
+  }),
+  on(GameActions.deleteGameSuccess, (state, action):GameState => {
+    const updatedGames = state.games.filter(p => p.id !==action.payload);
+    return {
+      ...state,
+      games: updatedGames,
+      error: ''
+    }
+  })
+
 
 
 
