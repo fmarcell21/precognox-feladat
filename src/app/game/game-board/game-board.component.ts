@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-game-board',
@@ -6,7 +7,11 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./game-board.component.css']
 })
 export class GameBoardComponent implements OnInit{
+  @Input()newGame: boolean;
+  constructor() {
+  }
   ngOnInit() {
+    console.log(this.newGame + 'From the board')
   }
 
   onCellClick(cell: string):void {
@@ -15,7 +20,7 @@ export class GameBoardComponent implements OnInit{
 
   changeCelValue(cell: string){
     if (!document.getElementById(cell).innerHTML){
-      console.log(cell);
+      // console.log(cell);
       document.getElementById(cell).innerHTML = 'x';
     }
   }

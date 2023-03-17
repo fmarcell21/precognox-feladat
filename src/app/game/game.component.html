@@ -1,25 +1,20 @@
 <div class="flex m-auto items-center flex-col">
-<!--    <form class="items-center w-full max-w-sm" (ngSubmit)="startGame()" #f ="ngForm">-->
-<!--        <div class="md:w-1/2">-->
-<!--          <input class="bg-zinc-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" type="text" id="gameName" ngModel name="gameName" required>-->
-<!--        </div>-->
-<!--      <button type="button" class="bg-transparent hover:bg-blue-400 text-blue-700 font-semibold hover:text-zinc-200 py-2 px-4 border border-blue-400 hover:border-transparent rounded transition-colors" (click)="startGame()" *ngIf="!gameStarted">Start Game</button>-->
-<!--    </form>-->
+
+  <button type="button" class="mt-5 bg-transparent hover:bg-blue-400 text-blue-700 font-semibold hover:text-zinc-200 py-2 px-4 border border-blue-400 hover:border-transparent rounded transition-colors" (click)="startGame()" *ngIf="!gameStarted">Start Game</button>
 
 
-  <form class="w-full max-w-sm" (ngSubmit)="startGame()" #f ="ngForm" *ngIf="!gameStarted">
-    <div class="flex items-center border-b border-blue-400 py-2">
-      <input class="appearance-none bg-transparent border-none w-full text-zinc-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Game Name"  id="gameName" ngModel name="gameName" required>
-      <button [disabled]="!f.valid" class="disabled:bg-red-400 disabled:hover:bg-red-500 disabled:hover:border-red-500 disabled:border-red-400 flex-shrink-0 bg-blue-400 hover:bg-blue-700 border-blue-400 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
-        Start
-      </button>
-    </div>
-  </form>
 
-    <h1 class="mb-8 text-3xl font-bold uppercase" *ngIf="gameStarted">Tic Tac Toe</h1>
+    <h1 class="mb-8 text-3xl font-bold uppercase mt-5" *ngIf="gameStarted">Tic Tac Toe</h1>
     <h3 class="mb-4 text-xl" *ngIf="gameStarted">Player X's turn</h3>
-    <app-game-board *ngIf="gameStarted"></app-game-board>
+    <app-game-board [newGame]="newGame" *ngIf="gameStarted"></app-game-board>
 
-
+    <form class="mt-20 w-full max-w-sm" (ngSubmit)="saveGame()" #f ="ngForm" *ngIf="gameStarted">
+      <div class="flex items-center border-b border-blue-400 py-2">
+        <input class="appearance-none bg-transparent border-none w-full text-zinc-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Game Name"  id="gameName" ngModel name="gameName" required>
+        <button [disabled]="!f.valid" class="disabled:bg-red-400 disabled:hover:bg-red-500 disabled:hover:border-red-500 disabled:border-red-400 flex-shrink-0 bg-blue-400 hover:bg-blue-700 border-blue-400 hover:border-blue-700 text-sm border-4 text-white py-1 px-2 rounded" type="submit">
+          Save
+        </button>
+      </div>
+    </form>
 
 </div>

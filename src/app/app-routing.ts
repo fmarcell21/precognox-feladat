@@ -1,10 +1,13 @@
 import {PreloadAllModules, RouterModule, Routes} from "@angular/router";
 import {NgModule} from "@angular/core";
-import {GameComponent} from "./game/game.component";
+
+import {SavesComponent} from "./game/saves/saves.component";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/game', pathMatch: 'full'},
-  {path: 'game', component: GameComponent}
+  {path: 'game', loadChildren: () => import("./game/game.module").then(m => m.GameModule)},
+
+  {path: 'saves', component: SavesComponent}
 
 ];
 

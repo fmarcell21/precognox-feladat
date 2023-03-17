@@ -12,10 +12,13 @@ import {AppRoutingModule} from "./app-routing";
 
 import {GameModule} from "./game/game.module";
 import {HeaderComponent} from "./header/header.component";
+import { SavesComponent } from './game/saves/saves.component';
+import {GameEffects} from "./game/State/game.effects";
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SavesComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import {HeaderComponent} from "./header/header.component";
     AppRoutingModule,
     GameModule,
     StoreModule.forRoot(),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([GameEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [],
